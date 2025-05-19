@@ -31,6 +31,25 @@ for saite in visas_saites:
     if len(rakstu_saites) == 5:
         break
 
+  doc = Document()
+    sodien = datetime.now().strftime("%Y-%m-%d")
+    docx_filename = f"{sidien}_cnn.docx"
+       
+    for idx, (virsraksts, saite) in enumerate(rakstu_saites, start=1):
+        try:
+            raksts = requuests.get(saite, timeout=10)
+            raksts.raise_for_status()
+        except Exception as e:
+            print(f"klūda, iegūstot ziņu: {virsraksts} - {e}")
+            continue
+        raksts_soup = BeautifulSoup(raksts.text, 'html.parser')
+        try virsraksts_teksts = raksts_soup.find('h1').get_text(strip=True)
+        except Exception:
+        virsrakstrs_teksts = virsraksts
+
+
+   datums_teksts = "(nav atrasts)"
+   try:
 
 
 
