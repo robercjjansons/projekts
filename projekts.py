@@ -65,6 +65,11 @@ doc.add_paragraph(f"Datums:{datums_teksts}")
 doc.add_paragraph(f"Ievads:{ievads_teksts or 'Nav apraksta'}")
 doc.add_paragraph(f" Saite:{saite}")
 doc.add_paragraph("")
+try::
+    doc.sava(docx_filename)
+    print(f"Rezultāti saglabāti:{docx_filename}")
+except Exception as e:
+    print(f"Kūda, saglabājot dokumentu: {e}")
 
            
 
