@@ -49,7 +49,24 @@ for saite in visas_saites:
 
 
    datums_teksts = "(nav atrasts)"
-   try:
+try:
+    meta_tag = raksts_soup.find("meta",{"itemprop":"datepulished"}) or \
+      raksts_soup.find("meta",{"name":"pubdate"}
+    if meta_tag and meta_tag.get("content")::
+        datums_teksts = meta_tag["content"].split("T")[0]
+except Exception:
+    pass
+ievads_teksts= ""
+if len(ievads_teksts)>150:
+    saisinajums = ievads_teksts[:ievads_teksts.rfind('',0,150)]
+    ievads_teksts = saisinajums + "..."
+doc.add_paragraph(f"{idx}. Virsraksts{virsakts_taksts}")
+doc.add_paragraph(f"Datums:{datums_teksts}")
+doc.add_paragraph(f"Ievads:{ievads_teksts or 'Nav apraksta'}")
+doc.add_paragraph(f" Saite:{saite}")
+doc.add_paragraph("")
+
+           
 
 
 
