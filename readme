@@ -1,1 +1,6 @@
-Šī projekta funkcija ir no populārās ziņu informācijas vietnes cnn.com 'scrapot' informāciju par tajā brīdī top 5 rakstiem un ievietot to hyperlinkus un virsrakkstus word dokumentā. Lai tas būtu iespējams tika izmantotas pāris bibliotēkas. BeautifulSoup un Requests bibliotēkas ļauj piekļūt HTML mājaslapām un ar tām arī darboties.
+Šī projekta funkcija ir no populārās ziņu informācijas vietnes cnn.com 'scrapot' informāciju
+par tajā brīdī top 5 rakstiem un ievietot to hyperlinkus un virsrakkstus word dokumentā.
+Lai tas būtu iespējams tika izmantotas pāris bibliotēkas. BeautifulSoup un Requests bibliotēkas ļauj piekļūt HTML mājaslapām un ar tām arī darboties.
+Bibliotēka DateTime atļauj piekļuvi šīs dienas laikam un datumam, un bibliotēka Document atļauj rediģēt un strādāt ar šajā gadījumā word dokumentu.
+Kods sāk ar mājaslapas rakstu ieguvi un tās saglabā (lapas_saturs). Tālāk tas meklēs HTML href(Hyperlink Refined) vienumus un tad tos sadalā divās grupās- redzētie
+un neredzētie. Ejot tālāk kods pāŗbauda vai jauni iegūtais vienums atbilst kritērijiem
