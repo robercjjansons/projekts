@@ -5,3 +5,6 @@ Bibliotēka DateTime atļauj piekļuvi šīs dienas laikam un datumam, un biblio
 Kods sāk ar mājaslapas rakstu ieguvi un tās saglabā (lapas_saturs). Tālāk tas meklēs HTML href(Hyperlink Refined) vienumus un tad tos sadalā divās grupās- redzētie
 un neredzētie. Ejot tālāk kods pāŗbauda vai jauni iegūtais vienums atbilst kritērijiem- vai raksts ir saistīts ar 2020-2029 gadiem, jo meklējam tikai aktuālāko
 informāciju, un vai hypersites ir jau redzētas. Un tad beidzoties pirmajai daļai kods pārveido mājaslapas site ja tā sākumānav HTML.
+Pec tam ar bibliotēkas docx palīdzību tiek izveidots word fails, kurā tiks izvadīta iegūtā informācija. Ar bibliotēku BeautifulSoup mājas lapas virsraksti tiek 
+prioritizēti un tiek saglabāti svarīgākie - h1. Tad tiek nolaīts raksta ievads - pirmās 150 rakstazīmes. Visa iegūtā informācija tiek saglabāta word failā
+ar šīsdienas datumu un ziņu portālu no kā ņemta informācija kā faila nosaukumu. 
