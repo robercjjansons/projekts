@@ -23,11 +23,11 @@ for saite in visas_saites:
     href = saite['href'] #<-- šeit izvelk URL no linka
     teksts = saite.get_text(strip= True) #<-- šeit izvelk nevajadzīgo(atstarpes) no URL
     
-    if '/2025' in href and teksts and href not in redzetie: #<-- šeit pārliecinamies, ka raksts ir par 2025.gadu, tajā nav tukšs teksts un šis ir neredzēts links
+    if '/2025' in href and teksts and href not in redzetas_saites: #<-- šeit pārliecinamies, ka raksts ir par 2025.gadu, tajā nav tukšs teksts un šis ir neredzēts links
         redzetas_saites.add(href)
         if not href.startswith("http"): #<-- ja linkam nav http sākums, tad mēs to pāŗveidojam
-            href = "https://edition.cnn.com/"
-        rakstu_saites.append(teksts, href) #<-- pievieno redzēto sarakstam
+           href = "https://edition.cnn.com" + href
+        rakstu_saites.append((teksts, href)) #<-- pievieno redzēto sarakstam
     if len(rakstu_saites) == 5:
         break
 
