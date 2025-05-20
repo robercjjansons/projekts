@@ -46,9 +46,8 @@ for idx, (virsraksts, saite) in enumerate(rakstu_saites, start=1):    #<--lejupi
             virsraksts_teksts = raksts_soup.find('h1').get_text(strip=True)      #<--h1=galvenais virsraksts
         except Exception:
           virsraksts_teksts = virsraksts
-
-
-       datums_teksts = "(nav atrasts)"   #<--tiek atrasts datums
+            
+        datums_teksts = "(nav atrasts)"   #<--tiek atrasts datums
 try:
     meta_tag = raksts_soup.find("meta",{"itemprop":"datePublished"}) or \
       raksts_soup.find("meta",{"name":"pubdate"})
