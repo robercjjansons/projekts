@@ -1,7 +1,7 @@
 import re #<--data matching bibliotēka
 from datetime import datetime
 import requests #<-- bibliotēka priekš html
-from bs4 import BeautifulSoup #<-- datascraping bibliotēka
+from bs4 import BeautifulSoup #<-- datascraping bibliotēka 
 from docx import Document
 
 
