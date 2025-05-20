@@ -31,10 +31,10 @@ for saite in visas_saites:
     if len(rakstu_saites) == 5:
         break
 doc = Document()                                   #<-- izveidojam dokumentu
-    sodien = datetime.now().strftime("%Y-%m-%d")     #<-- nosakām šodienas datumu
-    docx_filename = f"{sodien}_cnn.docx"             #<-- dokumenta nosaukums
+sodien = datetime.now().strftime("%Y-%m-%d")     #<-- nosakām šodienas datumu
+docx_filename = f"{sodien}_cnn.docx"             #<-- dokumenta nosaukums
        
-    for idx, (virsraksts, saite) in enumerate(rakstu_saites, start=1):    #<--lejupielādējam rakstus
+for idx, (virsraksts, saite) in enumerate(rakstu_saites, start=1):    #<--lejupielādējam rakstus
         try:
             raksts = requests.get(saite, timeout=10)
             raksts.raise_for_status()
@@ -42,14 +42,15 @@ doc = Document()                                   #<-- izveidojam dokumentu
             print(f"klūda, iegūstot ziņu: {virsraksts} - {e}")
             continue
         raksts_soup = BeautifulSoup(raksts.text, 'html.parser')
-        try: virsraksts_teksts = raksts_soup.find('h1').get_text(strip=True)      #<--h1=galvenais virsraksts
+        try: 
+            virsraksts_teksts = raksts_soup.find('h1').get_text(strip=True)      #<--h1=galvenais virsraksts
         except Exception:
-        virsraksts_teksts = virsraksts
+          virsraksts_teksts = virsraksts
 
 
    datums_teksts = "(nav atrasts)"   #<--tiek atrasts datums
 try:
-    meta_tag = raksts_soup.find("meta",{"itemprop":"datepulished"}) or \
+    meta_tag = raksts_soup.find("meta",{"itemprop":"datePublished"}) or \
       raksts_soup.find("meta",{"name":"pubdate"})
     if meta_tag and meta_tag.get("content"):
         datums_teksts = meta_tag["content"].split("T")[0]
@@ -59,7 +60,7 @@ ievads_teksts= ""   #<--tiek iegūts ievads no raksta un saīsināts līdz 150 r
 if len(ievads_teksts)>150:
     saisinajums = ievads_teksts[:ievads_teksts.rfind(' ',0,150)]
     ievads_teksts = saisinajums + "..."
-doc.add_paragraph(f"{idx}. Virsraksts{virsraksts_taksts}")    #<--katrs raksts tiek saglabākts dokumentā
+doc.add_paragraph(f"{idx}. Virsraksts{virsraksts_teksts}")    #<--katrs raksts tiek saglabākts dokumentā
 doc.add_paragraph(f"Datums:{datums_teksts}")
 doc.add_paragraph(f"Ievads:{ievads_teksts or 'Nav apraksta'}")
 doc.add_paragraph(f" Saite:{saite}")
