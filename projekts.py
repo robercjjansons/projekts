@@ -48,7 +48,7 @@ for idx, (virsraksts, saite) in enumerate(rakstu_saites, start=1):    #<--lejupi
           virsraksts_teksts = virsraksts
 
 
-   datums_teksts = "(nav atrasts)"   #<--tiek atrasts datums
+       datums_teksts = "(nav atrasts)"   #<--tiek atrasts datums
 try:
     meta_tag = raksts_soup.find("meta",{"itemprop":"datePublished"}) or \
       raksts_soup.find("meta",{"name":"pubdate"})
@@ -60,7 +60,7 @@ ievads_teksts= ""   #<--tiek iegūts ievads no raksta un saīsināts līdz 150 r
 if len(ievads_teksts)>150:
     saisinajums = ievads_teksts[:ievads_teksts.rfind(' ',0,150)]
     ievads_teksts = saisinajums + "..."
-doc.add_paragraph(f"{idx}. Virsraksts{virsraksts_teksts}")    #<--katrs raksts tiek saglabākts dokumentā
+doc.add_paragraph(f"{idx}. Virsraksts: {virsraksts_teksts}")    #<--katrs raksts tiek saglabākts dokumentā
 doc.add_paragraph(f"Datums:{datums_teksts}")
 doc.add_paragraph(f"Ievads:{ievads_teksts or 'Nav apraksta'}")
 doc.add_paragraph(f" Saite:{saite}")
