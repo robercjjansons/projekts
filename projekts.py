@@ -30,46 +30,45 @@ for saite in visas_saites:
         rakstu_saites.append((teksts, href)) #<-- pievieno redzēto sarakstam
     if len(rakstu_saites) == 5:
         break
-
-  doc = Document()                                   #<-- izveidojam dokumentu
+doc = Document()                                   #<-- izveidojam dokumentu
     sodien = datetime.now().strftime("%Y-%m-%d")     #<-- nosakām šodienas datumu
-    docx_filename = f"{sidien}_cnn.docx"             #<-- dokumenta nosaukums
+    docx_filename = f"{sodien}_cnn.docx"             #<-- dokumenta nosaukums
        
     for idx, (virsraksts, saite) in enumerate(rakstu_saites, start=1):    #<--lejupielādējam rakstus
         try:
-            raksts = requuests.get(saite, timeout=10)
+            raksts = requests.get(saite, timeout=10)
             raksts.raise_for_status()
         except Exception as e:
             print(f"klūda, iegūstot ziņu: {virsraksts} - {e}")
             continue
         raksts_soup = BeautifulSoup(raksts.text, 'html.parser')
-        try virsraksts_teksts = raksts_soup.find('h1').get_text(strip=True)      #<--h1=galvenais virsraksts
+        try: virsraksts_teksts = raksts_soup.find('h1').get_text(strip=True)      #<--h1=galvenais virsraksts
         except Exception:
-        virsrakstrs_teksts = virsraksts
+        virsraksts_teksts = virsraksts
 
 
    datums_teksts = "(nav atrasts)"   #<--tiek atrasts datums
 try:
     meta_tag = raksts_soup.find("meta",{"itemprop":"datepulished"}) or \
-      raksts_soup.find("meta",{"name":"pubdate"}
-    if meta_tag and meta_tag.get("content")::
+      raksts_soup.find("meta",{"name":"pubdate"})
+    if meta_tag and meta_tag.get("content"):
         datums_teksts = meta_tag["content"].split("T")[0]
 except Exception:
     pass
 ievads_teksts= ""   #<--tiek iegūts ievads no raksta un saīsināts līdz 150 rakstazīmēm
 if len(ievads_teksts)>150:
-    saisinajums = ievads_teksts[:ievads_teksts.rfind('',0,150)]
+    saisinajums = ievads_teksts[:ievads_teksts.rfind(' ',0,150)]
     ievads_teksts = saisinajums + "..."
-doc.add_paragraph(f"{idx}. Virsraksts{virsakts_taksts}")    #<--katrs raksts tiek saglabākts dokumentā
+doc.add_paragraph(f"{idx}. Virsraksts{virsraksts_taksts}")    #<--katrs raksts tiek saglabākts dokumentā
 doc.add_paragraph(f"Datums:{datums_teksts}")
 doc.add_paragraph(f"Ievads:{ievads_teksts or 'Nav apraksta'}")
 doc.add_paragraph(f" Saite:{saite}")
 doc.add_paragraph("")
-try::
-    doc.sava(docx_filename)             #<--fails tiek saglabāts
+try:
+    doc.save(docx_filename)             #<--fails tiek saglabāts
     print(f"Rezultāti saglabāti:{docx_filename}")
 except Exception as e:
-    print(f"Kūda, saglabājot dokumentu: {e}")
+    print(f"Kļūda, saglabājot dokumentu: {e}")
 
            
 
